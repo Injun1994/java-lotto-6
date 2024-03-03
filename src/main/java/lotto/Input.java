@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,10 @@ public class Input {
             if (amount % 1000 != 0) {
                 return inputAmount();
             }
+        } catch (NumberFormatException numberFormatException) {
+            numberFormatException.getStackTrace();
+            System.out.println(Print.INSERT_MONEY_ERROR);
+            return inputAmount();
         } catch (IllegalArgumentException illegalArgumentException) {
             illegalArgumentException.getStackTrace();
             System.out.println(Print.INSERT_MONEY_ERROR);
@@ -47,9 +52,9 @@ public class Input {
         boolean beInRange = true;
         List<Integer> lotteryNumberList = new ArrayList<>();
         try {
-            if (!isDuplicate(lotteryNumbers) && lotteryNumbers.length == Print.LOTTERY_NUMBER_IN_A_SET) {
+            if (!isDuplicate(lotteryNumbers) && lotteryNumbers.length == Lotto.LOTTERY_NUMBER_IN_A_SET) {
                 for (String lotteryNumber : lotteryNumbers) {
-                    if (Integer.parseInt(lotteryNumber) < Print.LOTTERY_START_NUMBER || Integer.parseInt(lotteryNumber) > Print.LOTTERY_END_NUMBER) {
+                    if (Integer.parseInt(lotteryNumber) < Lotto.LOTTERY_START_NUMBER || Integer.parseInt(lotteryNumber) > Lotto.LOTTERY_END_NUMBER) {
                         beInRange = false;
                     }
                 }
@@ -63,7 +68,6 @@ public class Input {
             e.getStackTrace();
             System.out.println(Print.INPUT_LOTTERY_NUMBERS_ERROR);
             inputLotteryNumbers();
-            ;
         }
         return lotteryNumberList;
     }
@@ -75,13 +79,12 @@ public class Input {
     }
 
     public boolean isDuplicate(String[] lotteryNumbers) {
-        return Arrays.stream(lotteryNumbers)
-                .distinct()
-                .count() != lotteryNumbers.length;
+        HashSet<String> lotteryNumbersSet = new HashSet<>(Arrays.asList(lotteryNumbers));
+        return lotteryNumbersSet.size() < lotteryNumbers.length;
     }
 
     public void validateBonusNumber(int bonusNumber) {
-        if (bonusNumber < Print.LOTTERY_START_NUMBER || bonusNumber > Print.LOTTERY_END_NUMBER) {
+        if (bonusNumber < Lotto.LOTTERY_START_NUMBER || bonusNumber > Lotto.LOTTERY_END_NUMBER) {
             throw new IllegalArgumentException(Print.INPUT_BONU_NUMBERS_ERROR);
         }
     }

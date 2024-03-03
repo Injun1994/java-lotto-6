@@ -13,7 +13,7 @@ public class WinningLotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != Print.LOTTERY_NUMBER_IN_A_SET) {
+        if (numbers.size() != Lotto.LOTTERY_NUMBER_IN_A_SET) {
             throw new IllegalArgumentException(Print.INPUT_LOTTERY_NUMBERS_ERROR);
         }
     }

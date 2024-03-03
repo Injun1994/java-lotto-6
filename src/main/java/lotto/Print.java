@@ -1,15 +1,7 @@
 package lotto;
 
 public class Print {
-    public static final int TICKET_PRICE = 1000;
-    public static final int LOTTERY_START_NUMBER = 1;
-    public static final int LOTTERY_END_NUMBER = 45;
-    public static final int LOTTERY_NUMBER_IN_A_SET = 6;
-    public static final int PRIZE_FOR_MATCHING_3_NUMBERS = 5000;
-    public static final int PRIZE_FOR_MATCHING_4_NUMBERS = 50000;
-    public static final int PRIZE_FOR_MATCHING_5_NUMBERS = 1500000;
-    public static final int PRIZE_FOR_MATCHING_5_NUMBERS_WITH_BONUS_NUMBER = 30000000;
-    public static final int PRIZE_FOR_MATCHING_6_NUMBERS = 2000000000;
+
     public static final String UNIT_FOR_MATCH = "개";
     public static final String INSERT_MONEY = "구입금액을 입력해주세요.";
     public static final String INSERT_MONEY_ERROR = "[ERROR] 금액은 1000의 배수여야 합니다.";

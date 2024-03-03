@@ -6,9 +6,13 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
 
+    public static final int LOTTERY_NUMBER_IN_A_SET = 6;
+    public static final int LOTTERY_START_NUMBER = 1;
+    public static final int LOTTERY_END_NUMBER = 45;
+
     public List<Integer> getLotteryNumbers() {
         List<Integer> lotteryNumberList = new ArrayList<>();
-        while (lotteryNumberList.size() < Print.LOTTERY_NUMBER_IN_A_SET) {
+        while (lotteryNumberList.size() < LOTTERY_NUMBER_IN_A_SET) {
             int lottertNumber = Randoms.pickNumberInRange(1, 45);
             if (!lotteryNumberList.contains(lottertNumber)) {
                 lotteryNumberList.add(lottertNumber);
