@@ -6,8 +6,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
 
-    private static final int LOTTERY_START_NUMBER = 1;
-    private static final int LOTTERY_END_NUMBER = 45;
+    public static final int LOTTERY_START_NUMBER = 1;
+    public static final int LOTTERY_END_NUMBER = 45;
     public static final int LOTTERY_NUMBER_IN_A_SET = 6;
 
     public List<Integer> getLotteryNumbers() {
