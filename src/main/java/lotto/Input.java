@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 
 public class Input {
 
+    private static final String INPUT_NUMBERS_SEPARATOR = ",";
+
     public int inputAmount() {
         System.out.println(Print.INSERT_MONEY);
         int amount = 0;
@@ -33,7 +35,7 @@ public class Input {
 
     public List<Integer> inputLotteryNumbers() {
         System.out.println("\n" + Print.INPUT_LOTTERY_NUMBERS);
-        return validateLotteryNumbers(Console.readLine().split(","));
+        return validateLotteryNumbers(Console.readLine().split(INPUT_NUMBERS_SEPARATOR));
     }
 
     public int inputBonusNumber() {
@@ -54,7 +56,7 @@ public class Input {
         try {
             if (!isDuplicate(lotteryNumbers) && lotteryNumbers.length == Lotto.LOTTERY_NUMBER_IN_A_SET) {
                 for (String lotteryNumber : lotteryNumbers) {
-                    if (Integer.parseInt(lotteryNumber) < Lotto.LOTTERY_START_NUMBER || Integer.parseInt(lotteryNumber) > Lotto.LOTTERY_END_NUMBER) {
+                    if (Integer.parseInt(lotteryNumber) < Lotto.LOTTERY_START_NUMBER || Lotto.LOTTERY_END_NUMBER < Integer.parseInt(lotteryNumber)) {
                         beInRange = false;
                     }
                 }
@@ -84,8 +86,8 @@ public class Input {
     }
 
     public void validateBonusNumber(int bonusNumber) {
-        if (bonusNumber < Lotto.LOTTERY_START_NUMBER || bonusNumber > Lotto.LOTTERY_END_NUMBER) {
-            throw new IllegalArgumentException(Print.INPUT_BONU_NUMBERS_ERROR);
+        if (bonusNumber < Lotto.LOTTERY_START_NUMBER || Lotto.LOTTERY_END_NUMBER < bonusNumber) {
+            throw new IllegalArgumentException(Print.INPUT_BONUS_NUMBERS_ERROR);
         }
     }
 }

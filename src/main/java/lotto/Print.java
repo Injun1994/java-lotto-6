@@ -1,5 +1,10 @@
 package lotto;
 
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 public class Print {
 
     public static final String UNIT_FOR_MATCH = "개";
@@ -9,7 +14,7 @@ public class Print {
     public static final String INPUT_LOTTERY_NUMBERS = "당첨 번호를 입력해 주세요.";
     public static final String INPUT_LOTTERY_NUMBERS_ERROR = "[ERROR] 1~45 사이의 각기 다른 숫자를 6개 입력해 주세요.";
     public static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-    public static final String INPUT_BONU_NUMBERS_ERROR = "[ERROR] 1~45 사이의 숫자 1개를 입력해 주세요.";
+    public static final String INPUT_BONUS_NUMBERS_ERROR = "[ERROR] 1~45 사이의 숫자 1개를 입력해 주세요.";
     public static final String LOTTERY_STATISTICS = "당첨 통계";
     public static final String MATCHING_3_NUMBERS = "3개 일치 (5,000원) - ";
     public static final String MATCHING_4_NUMBERS = "4개 일치 (50,000원) - ";
@@ -18,7 +23,16 @@ public class Print {
     public static final String MATCHING_6_NUMBERS = "6개 일치, 보너스 볼 일치 (2,000,000,000원) - ";
     public static final String TOTAL_RATE_OF_RETURN = "총 수익율은 ";
 
-    public void printMatchingResult(int numberOfMatching3Numbers, int numberOfMatching4Numbers, int numberOfMatching5Numbers, int numberOfMatching5NumbersWithBonus, int numberOfMatching6Numbers) {
+    public void printMatchingResult(List<NumberOfMatching> numberOfMatchingList) {
+        Map<NumberOfMatching, Long> numberOfMatchingMap = numberOfMatchingList.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+        int numberOfMatching3Numbers = Math.toIntExact(numberOfMatchingMap.getOrDefault(NumberOfMatching.MATCHING_3_NUMBERS, 0L));
+        int numberOfMatching4Numbers = Math.toIntExact(numberOfMatchingMap.getOrDefault(NumberOfMatching.MATCHING_4_NUMBERS, 0L));
+        int numberOfMatching5Numbers = Math.toIntExact(numberOfMatchingMap.getOrDefault(NumberOfMatching.MATCHING_5_NUMBERS, 0L));
+        int numberOfMatching5NumbersWithBonus = Math.toIntExact(numberOfMatchingMap.getOrDefault(NumberOfMatching.MATCHING_5_NUMBERS_WITH_BONUS_NUMBER, 0L));
+        int numberOfMatching6Numbers = Math.toIntExact(numberOfMatchingMap.getOrDefault(NumberOfMatching.MATCHING_6_NUMBERS, 0L));
+
         System.out.println("\n" + LOTTERY_STATISTICS);
         System.out.println("---");
         System.out.println(MATCHING_3_NUMBERS + numberOfMatching3Numbers + UNIT_FOR_MATCH);

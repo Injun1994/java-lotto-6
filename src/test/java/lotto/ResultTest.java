@@ -1,21 +1,19 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ResultTest {
 
-    @DisplayName("3장 구매하고, 결과가 3개가 일치할 때")
-    @Test
-    public void 확률_계산_테스트() {
+    @ParameterizedTest
+    @CsvSource({"3000, 5000, 60"})
+    public void 확률_계산_테스트(int ticketPrice, int matchPayout, int expectedResult) {
         //given
-        int ticketPrice = 3000;
-        int matchPayout = 5000;
+
         //when
         String result = new Result().getROI(ticketPrice, matchPayout);
         //then
-        assertEquals(result, "60");
+        assertEquals(result, expectedResult);
     }
 }
